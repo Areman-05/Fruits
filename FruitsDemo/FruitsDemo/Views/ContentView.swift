@@ -1,12 +1,20 @@
 
 import SwiftUI
 
-//TODO: Create a list
-//TODO: Create the navigation
 struct ContentView: View {
+    @StateObject private var fruitStore = FruitStore()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List {
+                ForEach(fruitStore.fruits) { fruit in
+                    NavigationLink(destination: DetailFruitView(fruit: fruit)) {
+                        FruitRowView(fruit: fruit)
+                    }
+                }
+            }
+            .navigationTitle("Fruits")
+        }
     }
 }
 
