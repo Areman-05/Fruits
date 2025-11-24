@@ -12,9 +12,14 @@ struct ContentView: View {
                         FruitRowView(fruit: fruit)
                     }
                 }
+                .onDelete(perform: deleteFruits)
             }
             .navigationTitle("Fruits")
         }
+    }
+    
+    private func deleteFruits(offsets: IndexSet) {
+        fruitStore.fruits.remove(atOffsets: offsets)
     }
 }
 
